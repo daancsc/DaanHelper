@@ -1,0 +1,22 @@
+/*NavBar*/
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+li {
+    text-align: center;
+    float: left;
+    display: inline-block;
+    width: 25%;
+}
+li>a {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+}
+li>a>img {
+    width: 50%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
