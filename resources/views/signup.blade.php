@@ -80,7 +80,7 @@
 						<select class="form-control" name="grade">
 							<option value="gradeOne">一年級</option>
 							<option value="gradeTwo">二年級</option>
-							<option value="gradeTherr">三年級</option>
+							<option value="gradeThree">三年級</option>
 						</select>
 					</div>
 				</div>
