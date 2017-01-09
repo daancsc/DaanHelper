@@ -40,58 +40,88 @@
         <li>
             <a href="../dashboard"><img src="/DaanHelper/public/css/image/setting.png"></a>
         </li>
-    </ul-->
-    <div style="margin: auto;" class="panel panel">
-        <div class="panel-body">
-            <div class="input">
-                <input type="button" name="submit" class="btn btn-success btn-block" value="學生管理">
-                <input type="button" name="submit" class="btn btn-info btn-block" value="缺勤管理">
+        </ul-->
+        <div style="margin: auto;" class="panel panel">
+            <div class="panel-body">
+                <div class="input">
+                    <input type="button" name="submit" class="btn btn-success btn-block" value="班級管理">
+                    <input type="button" name="submit" class="btn btn-info btn-block" value="缺勤管理">
+                </div>
             </div>
         </div>
+        <div id="class">
+            <div class="panel-body">
+                <form action="classManage" method="post">
+                    <div class="input input-group">
+                        <span class="input-group-addon">班級</span>
+                        <select class="form-control" name="class">
+                            <option value="1">電機甲班</option>
+                            <option value="2">電機乙班</option>
+                            <option value="3">電子甲班</option>
+                            <option value="4">電子乙班</option>
+                            <option value="5">資訊甲班</option>
+                            <option value="6">資訊乙班</option>
+                            <option value="7">控制甲班</option>
+                            <option value="8">控制乙班</option>
+                            <option value="9">機械甲班</option>
+                            <option value="10">機械乙班</option>
+                            <option value="11">製圖甲班</option>
+                            <option value="12">製圖乙班</option>
+                            <option value="13">冷凍甲班</option>
+                            <option value="14">冷凍乙班</option>
+                            <option value="15">汽車甲班</option>
+                            <option value="16">汽車乙班</option>
+                            <option value="17">建築甲班</option>
+                            <option value="18">建築乙班</option>
+                            <option value="19">圖傳甲班</option>
+                            <option value="20">圖傳乙班</option>
+                            <option value="21">綜高忠</option>
+                            <option value="22">綜高孝</option>
+                            <option value="23">綜高仁</option>
+                            <option value="24">綜高愛</option>
+                            <option value="25">綜職</option>
+                        </select>
+                        <select class="form-control" name="grade">
+                            <option value="gradeOne">一年級</option>
+                            <option value="gradeTwo">二年級</option>
+                            <option value="gradeThree">三年級</option>
+                        </select>
+                    </div>
+                    <div class="input input-group">
+                        <span class="input-group-addon">時間</span>
+                        <select class="form-control" name="week">
+                            <option value="mon">星期一</option>
+                            <option value="tue">星期二</option>
+                            <option value="wed">星期三</option>
+                            <option value="thu">星期四</option>
+                            <option value="fri">星期五</option>
+                            <option value="sta">星期六</option>
+                            <option value="sun">星期日</option>
+                        </select>
+                        <select class="form-control" name="time">
+                            <option value="">早讀</option>
+                            <option value="">升旗</option>
+                            <option value="">第一節</option>
+                            <option value="">第二節</option>
+                            <option value="">第三節</option>
+                            <option value="">第四節</option>
+                            <option value="">午休</option>
+                            <option value="">第五節</option>
+                            <option value="">第六節</option>
+                            <option value="">第七節</option>
+                            <option value="">第八節</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="input">
+                        <input type="submit" value="新增" name="submit" class="btn btn-info btn-block">
+                    </div>
+                </form>
+            </div>
+            <div id="late">
+
+            </div>
     </div>
-    <!--div id="search">
-        @include('rollCall.search')
-    </div>
-    <div id="list">    
-        <table class="table table-bordered table-responsive">
-            <thead>
-                <tr>
-                    <td>學生</td>
-                    @for($i=1; $i<=8; $i++)
-                        @if($i==1)
-                            <td>早讀</td>
-                            <td>升旗</td>
-                        @elseif($i==5)
-                            <td>午休</td>
-                        @endif
-                        <td>第{{$i}}節</td>
-                    @endfor
-                    <td>操作</td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($list as $list)
-                    <tr>
-                        <td>{{$list->nick}}</td>
-                        @for($i=1; $i<=11; $i++)
-                            <td>
-                                <select>
-                                    <option>正常</option>
-                                    <option>遲到</option>
-                                    <option>曠課</option>
-                                    <option>缺勤</option>
-                                    <option>病假</option>
-                                    <option>公假</option>
-                                    <option>事假</option>
-                                    <option>喪假</option>
-                                </select>
-                            </td>
-                        @endfor
-                        <td><button class="btn btn-block">更新</button></td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div-->
 </body>
+
 </html>
