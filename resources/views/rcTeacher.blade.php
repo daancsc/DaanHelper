@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="/DaanHelper/public/css/font.css">
     <link rel="stylesheet" href="/DaanHelper/public/css/main.css">
     <style>
+        h1{
+            text-align: center;
+        }
         .navbar {
             background-color: transparent;
             margin: 0;
@@ -142,12 +145,17 @@
                     @endfor
                 </select>
             </div>
+            <div id="mng">
+                
+            </div>
         </div>
     </div>
     <script type="text/javascript">
+        var token = $('input[name=_token]').val();
         $(function(){
             $('#class').hide();
             $('#manage').hide();
+            init();
         })
         $('#cla').click(function(){
             $('#class').show();
@@ -158,20 +166,69 @@
             $('#class').hide();
             $('#manage').show();
         })
-
+        function manage(date, time){
+            $.ajax({
+                url:"search",
+                type:"POST",
+                data:{'_token':token, 'date':date, 'time':time},
+                dataType:"text",
+                success:function(msg){
+                    if(msg == "null"){
+                        console.log("OA");
+                        $('#mng').html("<h1>本節沒有任課班級</h1>");
+                    }else if(msg == "[]"){
+                        $('#mng').html("<h1>任課班級沒有學生註冊</h1>");
+                    }else{
+                        var data = JSON.parse(msg);
+                        var sta = ['OK', 'delay', 'lack', 'waste', 'ill', 'public', 'thing', 'funeral'];
+                        var status = ['正常', '遲到', '缺課', '曠課', '病假', '公假', '事假', '喪假'];
+                        var table = "<table class='table'><thead><tr><td>學生姓名</td><td>出勤紀錄</td></tr></thead>";
+                        for(var i=0; i<data.length; i++){
+                            table += "<tr><td>"+data[i]['name']+"</td><td id='"+data[i]['email']+"'><select class='form-control' name='status'>";
+                            for(var j=0; j<status.length; j++){
+                                table += "<option value='"+sta[j]+"'>"+status[j]+"</option>";
+                            }
+                            table += "</select></tr>";
+                        }
+                        $('#mng').html(table);
+                        init();
+                    }
+                }
+            })
+        }
+        function init(){
+            $('select[name=status]').change(function(){
+                console.log('OAO');
+                var email = $(this).parent().attr('id');
+                var status = $(this).val();
+                var date = $('select[name=date]').val();
+                var time = $('select[name=time]').val();
+                $.ajax({
+                    url:'addStatus',
+                    type:'post',
+                    data:{'_token':token ,'email':email, 'date':date, 'time':time, 'status':status},
+                    dataType:'text',
+                    success: function(msg){
+                        console.log(msg);
+                    }
+                })
+            })
+        }
         $('select[name=date]').change(function(){
             var date = $(this).val();
             var time = $('select[name=time]').val();
-            
+            manage(date, time);
         })
         $('select[name=time]').change(function(){
             var date = $('select[name=date]').val();
             var time = $(this).val();
+            manage(date, time);
         })
         $('select[name=week]').change(function(){
             $('.table').show();
+            $('select[name=class]').val('none');
+            $('select[name=grade]').val('none');
             var date = $('select[name=week]').val();
-            var token = $('input[name=_token]').val();
             $.ajax({
                 url: 'class',
                 type: 'post',
@@ -188,7 +245,6 @@
             })
         })
         function addNew(grade, Class, date, time){
-            var token = $('input[name=_token]').val();
             $.ajax({
                 url: "add",
                 type: "post",

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class rcLists extends Model
+class rclists extends Model
 {
     protected $fillable = [
-        'stuId', 'time', 'status',
+        'date', 'time', 'stuEmail', 'status',
     ];
 }

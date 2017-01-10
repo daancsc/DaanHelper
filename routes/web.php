@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Input;
 use \App\User;
 use \App\Models\students;
+use \App\Models\rcLists;
 //require_once('..\app\User.php');
 /*
 |--------------------------------------------------------------------------
@@ -115,4 +116,35 @@ Route::post('rollCall/add', function() {
         $student = new students($data);
         $student->save();
     } 
+});
+
+Route::post('rollCall/search', function() {
+    $class = students::where('teacher', Auth::user()->email)
+                   ->where('date', Input::get('date'))
+                   ->where('time', Input::get('time'))
+                   ->first();
+    if($class==""){
+        echo "null";
+    }else{
+        $data = User::where('class', $class['class'])
+                ->get();
+        echo $data;
+    }
+});
+
+Route::post('rollCall/addStatus', function() {
+    $data = array(
+        'stuEmail' => Input::get('email'),
+        'status' => Input::get('status'),
+        'date' => Input::get('date'),
+        'time' => Input::get('time'));
+    rcLists::where('stuEmail', $data['stuEmail'])
+            ->where('date', $data['date'])
+            ->where('time', $data['time'])
+            ->delete();
+    if($data['status']!='OK'){
+        $rc = new rcLists($data);
+        $rc->save();
+        echo "OK";
+    }
 });
