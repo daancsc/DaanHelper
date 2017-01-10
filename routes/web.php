@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Input;
 use \App\User;
 use \App\Models\students;
-use \App\Models\rcLists;
+use \App\Models\rclists;
 //require_once('..\app\User.php');
 /*
 |--------------------------------------------------------------------------
@@ -76,7 +76,8 @@ Route::get('logout', function() {
 
 Route::get('rollCall/student', function() {
    if(Auth::check()){
-       echo "Yes";
+       $data = rclists::where('stuEmail', Auth::user()->email) -> get();
+       return view('rcStudent')->with('list', $data);
    }else{
        return Redirect::to('login');
    }
@@ -138,7 +139,7 @@ Route::post('rollCall/addStatus', function() {
         'status' => Input::get('status'),
         'date' => Input::get('date'),
         'time' => Input::get('time'));
-    rcLists::where('stuEmail', $data['stuEmail'])
+    rclists::where('stuEmail', $data['stuEmail'])
             ->where('date', $data['date'])
             ->where('time', $data['time'])
             ->delete();

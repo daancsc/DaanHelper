@@ -41,6 +41,64 @@
             <a href=""><img src="/DaanHelper/public/css/image/setting.png"></a>
         </li>
     </ul>
+    <table class="table">
+       <thead>
+            <tr>
+                <td>日期</td>
+                <td>時間</td>
+                <td>狀態</td>
+            </tr>
+       </thead>
+       <tbody>
+        @foreach($list as $list)
+            <tr>
+                <td id='date'>
+                    <p>{{$list->date}}</p>
+                </td>
+                <td id='time'>
+                    <p>{{$list->time}}</p>
+                </td>
+                <td id='status'>
+                    <p>{{$list->status}}</p>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <script>
+        var Date = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天"];
+        var dv = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+        var Time = ["早讀", "升旗", "第一節", "第二節", "第三節", "第四節", "午休", "第五節", "第六節", "第七節", "第八節"]; 
+        var tv = ['morning', 'raising', '1', '2', '3', '4', 'rest', '5', '6', '7', '8'];
+        var sv = ['OK', 'delay', 'lack', 'waste', 'ill', 'public', 'thing', 'funeral'];
+        var Status = ['正常', '遲到', '缺課', '曠課', '病假', '公假', '事假', '喪假'];
+        $('#date').each(function(i, date){
+            var d = $(this).children().text();
+            for(var j=0; j<dv.length;j++){
+                //console.log(dv[j] + "," + d);
+                if(dv[j] == d){
+                    //conexsole.log(Date[j]);
+                    $(this).children().text(Date[j]);
+                }
+            }
+        })
+        $('#time').each(function(i, time){
+            var t = $(this).children().text();
+            for(var j=0; j<tv.length; j++){
+                if(tv[j] == t){
+                    $(this).children().text(Time[j]);
+                }
+            }
+        })
+        $('#status').each(function(i, time){
+            var s = $(this).children().text();
+            for(var j=0; j<sv.length; j++){
+                if(sv[j] == s){
+                    $(this).children().text(Status[j]);
+                }
+            }
+        })
+    </script>
 </body>
 
 </html>
