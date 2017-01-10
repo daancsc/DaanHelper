@@ -7,10 +7,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexhei.css">
-    <link rel="stylesheet" href="/DaanHelper/public/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/cwtexming.css">
-    <link rel="stylesheet" href="/DaanHelper/public/css/font.css">
-    <link rel="stylesheet" href="/DaanHelper/public/css/main.css">
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="/css/main.css">
     <style>
         .navbar {
             background-color: transparent;
@@ -29,16 +29,16 @@
     </nav>
     <ul class="nav">
         <li>
-            <a href=""><img src="/DaanHelper/public/css/image/talk.png"></a>
+            <a href=""><img src="/css/image/talk.png"></a>
         </li>
         <li>
-            <a href=""><img src="/DaanHelper/public/css/image/note.png"></a>
+            <a href=""><img src="/css/image/note.png"></a>
         </li>
         <li>
-            <a href="#"><img src="/DaanHelper/public/css/image/RollCall.png"></a>
+            <a href="#"><img src="/css/image/RollCall.png"></a>
         </li>
         <li>
-            <a href=""><img src="/DaanHelper/public/css/image/setting.png"></a>
+            <a href=""><img src="/css/image/setting.png"></a>
         </li>
     </ul>
     <table class="table">
