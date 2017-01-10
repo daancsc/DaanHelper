@@ -92,24 +92,27 @@ Route::get('rollCall/teacher', function() {
    }
 });
 
-Route::post('search', function() {
-    $input = Input::get('input');
-    $data = User::where('email', $input)
-                  ->orWhere('nick', $input)
-                  ->where('indentity', 'student')
-                  ->get();
+Route::post('rollCall/class', function(){
+    $date = Input::get('date');
+    $data = students::where('teacher', Auth::user()->email)
+                    ->where('date', $date)
+                    ->get();
     echo $data;
-});
+}); 
 
-Route::get('add/{email}', function($email) {
-    echo Auth::user()->email;
-    $nick = User::where('email', $email)->first()->nick;
-    echo $nick;
+Route::post('rollCall/add', function() {
     $data = array(
         'teacher' => Auth::user()->email,
-        'student' => $email,
-        'nick' => $nick);
-    $student = new students($data);
-    $student->save();
-    return Redirect::to('rollCall/teacher');
+        'class' => Input::get('class'),
+        'grade' => Input::get('grade'),
+        'date' => Input::get('date'),
+        'time' => Input::get('time'));
+    students::where('teacher', $data['teacher'])
+            ->where('date', $data['date'])
+            ->where('time', $data['time'])
+            ->delete();
+    if($data['grade']!='none' && $data['class']!='none'){
+        $student = new students($data);
+        $student->save();
+    } 
 });
